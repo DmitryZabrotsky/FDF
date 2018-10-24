@@ -3,7 +3,15 @@
 
 # include "libft/incl/libft.h"
 # include <stdio.h>
+# include <fcntl.h>
 
-void test(void);
+typedef struct	s_map
+{
+	int 		x;
+	int			y;
+	int 		**vals;
+}				t_map;
+
+t_map	*create_map(void);
 
 #endif

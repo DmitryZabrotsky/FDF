@@ -1,6 +1,14 @@
 #include "../fdf.h"
 
-void	test(void)
+t_map	*create_map(void)
 {
-	ft_putendl("utils");
+	t_map *map;
+
+	if ((map = (t_map *)malloc(sizeof(t_map))))
+	{
+		map->x = 0;
+		map->y = 0;
+		map->vals = NULL;
+	}
+	return(map);
 }
