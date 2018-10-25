@@ -1,5 +1,13 @@
 #include "../fdf.h"
 
+void		print_error(void)
+{
+	ft_putstr(RED);
+	ft_putendl("Error!");
+	ft_putstr(RESET);
+	exit(0);
+}
+
 t_map	*create_map(void)
 {
 	t_map *map;

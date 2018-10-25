@@ -13,5 +13,6 @@ typedef struct	s_map
 }				t_map;
 
 t_map	*create_map(void);
+void	print_error(void);
 
 #endif
