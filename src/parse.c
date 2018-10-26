@@ -29,7 +29,7 @@ static int			*get_numbers(char *s, int x)
 	char	**arr;
 	int		i;
 
-	if ((res = (int *)malloc(sizeof(int) * x)))
+	if ((res = (int *)malloc(sizeof(int) * x + 1)))
 	{
 		i = 0;
 		arr = ft_strsplit(s, ' ');

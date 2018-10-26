@@ -39,8 +39,8 @@ void	draw_line(t_mlx *mlx, t_point *a, t_point *b)
 	int		x;
 	int		z;
 
-	printf("a: x = %i, y = %i\n", (int)a->x, (int)a->y);
-	printf("b: x = %i, y = %i\n", (int)b->x, (int)b->y);
+	// printf("a: x = %i, y = %i\n", (int)a->x, (int)a->y);
+	// printf("b: x = %i, y = %i\n", (int)b->x, (int)b->y);
 	x = a->x;
 	y = a->y;
 	if (ft_abs(a->x - b->x) > ft_abs(a->y - b->y))
@@ -50,9 +50,9 @@ void	draw_line(t_mlx *mlx, t_point *a, t_point *b)
 	//int i = 10;
 	while (y != b->y || x != b->x)
 	{
-		printf("x = %i, y = %i\n", x, y);
-		printf("b: x = %i, y = %i\n", (int)b->x, (int)b->y);
-		mlx_pixel_put(mlx->ptr, mlx->window, x, y, 0xff0000);
+		// printf("x = %i, y = %i\n", x, y);
+		// printf("b: x = %i, y = %i\n", (int)b->x, (int)b->y);
+		mlx_pixel_put(mlx->ptr, mlx->window, x, y, 0xb0ffed);
 		if (z > ft_abs(a->x - b->x) * -1)
 		{
 			z -= ft_abs(a->y - b->y);
@@ -76,7 +76,7 @@ t_mlx		*init_mlx(t_map *map)
 		res->y = map->y;
 		res->x = map->x;
 		res->ptr = mlx_init();
-		res->window = mlx_new_window(res->ptr, res->x + 1000, res->y + 1000, "FDF");
+		res->window = mlx_new_window(res->ptr, res->x + 1500, res->y + 1500, "FDF");
 	}
 	return (res);
 }
@@ -88,8 +88,8 @@ void		init_point(t_point *point, t_map *map, int y, int x)
 	point->z = map->vals[y][x] * 10;
 	rotate_z(point, -0.5);
 	rotate_x(point, -0.5);
-	point->y += 250;
-	point->x += 100; // отступ от края
+	point->y += 300;
+	point->x += 250; // отступ от края
 }
 
 void		handler(char *file)
@@ -105,8 +105,13 @@ void		handler(char *file)
 	if ((map->x = find_x(file) - 1) <= 0)
 		print_error();
 	map->vals = build_arr(file, map->y, map->x);
-	mlx = init_mlx(map);
+	
+	ft_putnbr(map->x);
+	ft_putstr(" height:");
+	ft_putnbr(map->y);
+	ft_putstr("\n");
 
+	mlx = init_mlx(map);
 	mlx_clear_window(mlx->ptr, mlx->window);
 	
 	int i = 0;
@@ -127,8 +132,8 @@ void		handler(char *file)
 				init_point(&point_b, map, i + 1, j);
 				draw_line(mlx, &point_a, &point_b);
 			}
-			mlx_pixel_put(mlx->ptr, mlx->window, point_a.x, point_a.y, 0xb0ffed);
-			mlx_pixel_put(mlx->ptr, mlx->window, point_b.x, point_b.y, 0xffff00);
+			// mlx_pixel_put(mlx->ptr, mlx->window, point_a.x, point_a.y, 0xb0ffed);
+			// mlx_pixel_put(mlx->ptr, mlx->window, point_b.x, point_b.y, 0xffff00);
 
 			j++;
 		}
