@@ -5,6 +5,7 @@
 # include <stdio.h>
 # include <fcntl.h>
 # include "minilibx_macos/mlx.h"
+# include <math.h>
 
 typedef struct	s_map
 {
@@ -20,6 +21,13 @@ typedef struct 	s_mlx
 	void		*ptr;
 	void		*window;
 }				t_mlx;
+
+typedef struct 	s_point
+{
+	int		y;
+	int		x;
+	int		z;	
+}				t_point;
 
 t_map			*create_map(void);
 void			print_error(void);
