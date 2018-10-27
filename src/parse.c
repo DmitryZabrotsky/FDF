@@ -18,6 +18,7 @@ static int			check_str(char *str, int x)
 	arr = ft_strsplit(str, ' ');
 	while (arr[i])
 		i++;
+	ft_arrfree(&arr);
 	if (i != x + 1)
 		return (0);
 	return (1);
@@ -66,8 +67,8 @@ int			**build_arr(char *file, int y, int x)
 			}
 			res[i] = get_numbers(s, x);
 			i++;
+			free(s);
 		}
-		free(s);
 	}
 	return (res);
 }
@@ -95,7 +96,10 @@ int			find_x(char *file)
 		free(s);
 	}
 	else
+	{
+		free(s);
 		print_error();
+	}
 	return (x);
 }
 

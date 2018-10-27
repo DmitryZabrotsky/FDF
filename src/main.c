@@ -8,9 +8,8 @@ int		key_hooker(int key, void *param)
 	if (key == 53)
 	{
 		mlx_destroy_window(mlx->ptr, mlx->window);
-		// CLEAR MEMORY();
+		handle_map(0);
 		exit(0);
-		return (1);
 	}
 	return (1);
 }
@@ -124,7 +123,7 @@ void		handler(char *file)
 	t_point point_a;
 	t_point point_b;
 
-	map = create_map();
+	map = handle_map(1);
 	if ((map->y = find_y(file) - 1) <= 0)
 		print_error();
 	if ((map->x = find_x(file) - 1) <= 0)
@@ -213,6 +212,7 @@ map->indent_y = map->border - point_f.y;
 		}
 		i++;
 	}
+
 	mlx_key_hook(mlx.window, key_hooker, &mlx);
 	mlx_loop(mlx.ptr);
 

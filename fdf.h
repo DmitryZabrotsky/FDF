@@ -34,8 +34,9 @@ typedef struct 	s_point
 	int		z;	
 }				t_point;
 
-t_map			*create_map(void);
+t_map			*handle_map(int mode);
 void			print_error(void);
+void			clear_map(t_map *map);
 
 int				find_y(char *file);
 int				find_x(char *file);

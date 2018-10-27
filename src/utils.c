@@ -8,20 +8,38 @@ void		print_error(void)
 	exit(0);
 }
 
-t_map	*create_map(void)
+t_map	*handle_map(int mode)
 {
-	t_map *map;
+	static t_map *map = NULL;
 
-	if ((map = (t_map *)malloc(sizeof(t_map))))
+	if (mode == 1)
 	{
-		map->x = 0;
-		map->y = 0;
-		map->vals = NULL;
-		map->val = 0;
-		map->border = 0;
-		map->w_y = 0;
-		map->w_x = 0;
-		map->indent_y = 0;
+		if ((map = (t_map *)malloc(sizeof(t_map))))
+		{
+			map->x = 0;
+			map->y = 0;
+			map->vals = NULL;
+			map->val = 0;
+			map->border = 0;
+			map->w_y = 0;
+			map->w_x = 0;
+			map->indent_y = 0;
+		}
 	}
+	if (mode == 0)
+		clear_map(map);
 	return(map);
+}
+
+void	clear_map(t_map *map)
+{
+	int i = 0;
+
+	while (i <= map->y)
+	{
+		free(map->vals[i]);
+		i++;
+	}
+	free(map->vals);
+	free(map);
 }
