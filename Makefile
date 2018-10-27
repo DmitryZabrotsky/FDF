@@ -32,6 +32,5 @@ clean:
 fclean:
 	make -C libft/ fclean
 	rm -rf $(NAME)
-	make -C minilibx_macos fclean
 
 re: fclean all

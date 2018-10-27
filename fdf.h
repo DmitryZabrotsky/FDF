@@ -12,6 +12,11 @@ typedef struct	s_map
 	int 		x;
 	int			y;
 	int 		**vals;
+	int			val;
+	int			border;
+	int			w_y;
+	int			w_x;
+	int			indent_y;
 }				t_map;
 
 typedef struct 	s_mlx

@@ -17,6 +17,11 @@ t_map	*create_map(void)
 		map->x = 0;
 		map->y = 0;
 		map->vals = NULL;
+		map->val = 0;
+		map->border = 0;
+		map->w_y = 0;
+		map->w_x = 0;
+		map->indent_y = 0;
 	}
 	return(map);
 }
