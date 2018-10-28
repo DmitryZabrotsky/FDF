@@ -42,4 +42,11 @@ int				find_y(char *file);
 int				find_x(char *file);
 int				**build_arr(char *file, int y, int x);
 
+void			get_point_after_rotate(t_point *point, int y, int x, t_map *map);
+void			init_point(t_point *point, t_map *map, int y, int x);
+
+void			map_handler(t_map *map, char *file);
+
+void			draw_image(t_map *map, t_mlx mlx);
+
 #endif

@@ -6,7 +6,7 @@ SRC_DIR = src/
 SRC = $(addprefix $(SRC_DIR), $(C_FILES))
 OBJ = $(SRC:.c=.o)
 LIB = libft/libft.a
-C_FILES = main.c utils.c parse.c
+C_FILES = main.c utils.c parse.c map.c point.c draw.c
 MLX = minilibx_macos/libmlx.a
 MLX_LNK = -L minilibx_macos/ -lmlx -framework OpenGL -framework AppKit
 
