@@ -58,11 +58,19 @@ static void		size_handler(t_map *map)
 
 void			map_handler(t_map *map, char *file)
 {
-	if ((map->y = find_y(file) - 1) <= 0)
+	t_error error;
+
+	error.err = 0;
+	if ((map->y = find_y(file) - 1) < 0)
 		print_error();
-	if ((map->x = find_x(file) - 1) <= 0)
+	if ((map->x = find_x(file) - 1) < 0)
 		print_error();
-	map->vals = build_arr(file, map->y, map->x);
+	map->vals = build_arr(file, map->y, map->x, &error);
+	if (error.err)
+	{
+		handle_map(0);
+		print_error();
+	}
 	map->border = 50;
 	size_handler(map);
 }

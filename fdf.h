@@ -46,13 +46,18 @@ typedef struct	s_point
 	int			z;
 }				t_point;
 
+typedef struct	s_error
+{
+	int			err;
+}				t_error;
+
 t_map			*handle_map(int mode);
 void			print_error(void);
 void			clear_map(t_map *map);
 
 int				find_y(char *file);
 int				find_x(char *file);
-int				**build_arr(char *file, int y, int x);
+int				**build_arr(char *file, int y, int x, t_error *error);
 
 void			get_point_after_rotate(t_point *point, int y,
 											int x, t_map *map);

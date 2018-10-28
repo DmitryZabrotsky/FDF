@@ -36,7 +36,7 @@ static int	check_str(char *str, int x)
 	return (1);
 }
 
-static int	*get_numbers(char *s, int x)
+static int	*get_numbers(char *s, int x, t_error *error)
 {
 	int		*res;
 	char	**arr;
@@ -49,6 +49,8 @@ static int	*get_numbers(char *s, int x)
 		while (arr[i] && i <= x)
 		{
 			res[i] = ft_atoi(arr[i]);
+			if (res[i] > 1000 || res[i] < -1000)
+				error->err = 1;
 			free(arr[i]);
 			i++;
 		}
@@ -57,7 +59,7 @@ static int	*get_numbers(char *s, int x)
 	return (res);
 }
 
-int			**build_arr(char *file, int y, int x)
+int			**build_arr(char *file, int y, int x, t_error *error)
 {
 	char	*s;
 	int		fd;
@@ -77,7 +79,7 @@ int			**build_arr(char *file, int y, int x)
 				free(s);
 				print_error();
 			}
-			res[i] = get_numbers(s, x);
+			res[i] = get_numbers(s, x, error);
 			i++;
 			free(s);
 		}
