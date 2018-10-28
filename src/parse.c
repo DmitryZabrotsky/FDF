@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dzabrots <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/10/28 16:47:07 by dzabrots          #+#    #+#             */
+/*   Updated: 2018/10/28 16:47:08 by dzabrots         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../fdf.h"
 
-static int			check_str(char *str, int x)
+static int	check_str(char *str, int x)
 {
 	int		i;
 	char	**arr;
@@ -24,7 +36,7 @@ static int			check_str(char *str, int x)
 	return (1);
 }
 
-static int			*get_numbers(char *s, int x)
+static int	*get_numbers(char *s, int x)
 {
 	int		*res;
 	char	**arr;
@@ -34,7 +46,7 @@ static int			*get_numbers(char *s, int x)
 	{
 		i = 0;
 		arr = ft_strsplit(s, ' ');
-		while(arr[i] && i <= x)
+		while (arr[i] && i <= x)
 		{
 			res[i] = ft_atoi(arr[i]);
 			free(arr[i]);
@@ -47,7 +59,7 @@ static int			*get_numbers(char *s, int x)
 
 int			**build_arr(char *file, int y, int x)
 {
-	char 	*s;
+	char	*s;
 	int		fd;
 	int		**res;
 	int		i;
@@ -58,7 +70,7 @@ int			**build_arr(char *file, int y, int x)
 		print_error();
 	if ((res = (int **)malloc(sizeof(int *) * y + 1)))
 	{
-		while(get_next_line(fd, &s) > 0 && i <= y)
+		while (get_next_line(fd, &s) > 0 && i <= y)
 		{
 			if (!check_str(s, x))
 			{
@@ -88,12 +100,9 @@ int			find_x(char *file)
 	{
 		arr = ft_strsplit(s, ' ');
 		while (arr[x])
-		{
-			free(arr[x]);
 			x++;
-		}
-		free(arr);
 		free(s);
+		ft_arrfree(&arr);
 	}
 	else
 	{

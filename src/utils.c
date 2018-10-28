@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dzabrots <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/10/28 16:47:23 by dzabrots          #+#    #+#             */
+/*   Updated: 2018/10/28 16:47:26 by dzabrots         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../fdf.h"
 
-void		print_error(void)
+void	print_error(void)
 {
 	ft_putstr(RED);
 	ft_putendl("Error!");
@@ -28,13 +40,14 @@ t_map	*handle_map(int mode)
 	}
 	if (mode == 0)
 		clear_map(map);
-	return(map);
+	return (map);
 }
 
 void	clear_map(t_map *map)
 {
-	int i = 0;
+	int	i;
 
+	i = 0;
 	while (i <= map->y)
 	{
 		free(map->vals[i]);

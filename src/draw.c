@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   draw.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dzabrots <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/10/28 16:46:42 by dzabrots          #+#    #+#             */
+/*   Updated: 2018/10/28 16:46:44 by dzabrots         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../fdf.h"
 
-static int ft_abs(int num)
+static int	ft_abs(int num)
 {
 	if (num < 0)
 		return (-num);
@@ -39,32 +51,27 @@ void		draw_image(t_map *map, t_mlx mlx)
 {
 	t_point	point_a;
 	t_point	point_b;
-	int		i;
-	int		j;
-	
-	i = 0;
-	j = 0;
-	while (i <= map->y)
-	{
-		j = 0;
-		while (j <= map->x)
-		{
-			init_point(&point_a, map, i, j);
-			if (j != map->x)
-			{
-				init_point(&point_b, map, i, j + 1);
-				draw_line(&mlx, &point_a, &point_b);
-			}
-			if (i != map->y)
-			{
-				init_point(&point_b, map, i + 1, j);
-				draw_line(&mlx, &point_a, &point_b);
-			}
-			// mlx_pixel_put(mlx->ptr, mlx->window, point_a.x, point_a.y, 0xb0ffed);
-			// mlx_pixel_put(mlx->ptr, mlx->window, point_b.x, point_b.y, 0xffff00);
+	int		i_j[2];
 
-			j++;
+	i_j[0] = 0;
+	while (i_j[0] <= map->y)
+	{
+		i_j[1] = 0;
+		while (i_j[1] <= map->x)
+		{
+			init_point(&point_a, map, i_j[0], i_j[1]);
+			if (i_j[1] != map->x)
+			{
+				init_point(&point_b, map, i_j[0], i_j[1] + 1);
+				draw_line(&mlx, &point_a, &point_b);
+			}
+			if (i_j[0] != map->y)
+			{
+				init_point(&point_b, map, i_j[0] + 1, i_j[1]);
+				draw_line(&mlx, &point_a, &point_b);
+			}
+			i_j[1]++;
 		}
-		i++;
+		i_j[0]++;
 	}
 }

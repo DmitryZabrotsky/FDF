@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dzabrots <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/10/28 16:46:50 by dzabrots          #+#    #+#             */
+/*   Updated: 2018/10/28 16:46:51 by dzabrots         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../fdf.h"
 
-int		key_hooker(int key, void *param)
+int				key_hooker(int key, void *param)
 {
 	t_mlx *mlx;
 
@@ -22,39 +34,21 @@ static void		init_mlx(t_map *map, t_mlx *mlx)
 	mlx->window = mlx_new_window(mlx->ptr, map->w_y, map->w_y, "FDF");
 }
 
-void		handler(char *file)
+void			handler(char *file)
 {
-	t_map 	*map;
-	t_mlx	mlx;
+	t_map		*map;
+	t_mlx		mlx;
 
 	map = handle_map(1);
 	map_handler(map, file);
-
-// printf("y: %i x: %i", map->y, map->x);
-// int i = 0;
-// int j = 0;
-// while (i <= map->y)
-// {
-// 	j = 0;
-// 	while (j <= map->x)
-// 	{
-// 		ft_putnbr(map->vals[i][j]);
-// 		ft_putstr(" ");
-// 		j++;
-// 	}
-// 	ft_putendl(" ");
-// 	i++;
-// }
-
 	init_mlx(map, &mlx);
 	mlx_clear_window(mlx.ptr, mlx.window);
 	draw_image(map, mlx);
 	mlx_key_hook(mlx.window, key_hooker, &mlx);
 	mlx_loop(mlx.ptr);
-
 }
 
-void		usage(char *name)
+void			usage(char *name)
 {
 	ft_putstr("Usage: ");
 	ft_putstr(name);
@@ -62,7 +56,7 @@ void		usage(char *name)
 	exit(0);
 }
 
-int			main(int av, char **ac)
+int				main(int av, char **ac)
 {
 	if (av != 2)
 		usage(ac[0]);
